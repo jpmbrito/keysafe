@@ -16,7 +16,10 @@
 | **Total Estimated Time** | 5h |
 
 ## Architecture and design choices
+
 - All key material in the keystore shall be sealed by a Master Key. The key shall never exist in plaintext in storage.
+
+
 
 ### Project structure
 ```
@@ -24,6 +27,7 @@ cmd\
     keysafe\        > Keysafe main program
 internal\           
     config\         > Env. variables configurations (if any)
+    audit\          > log and audit
     crypto\         > Abstraction and realization of needed cryptographic operations
     handlers\       > service handlers
     store\          > Abstraction and realization of key storage
