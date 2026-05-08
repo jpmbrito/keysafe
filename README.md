@@ -134,7 +134,7 @@ Some Test!
 }
 Some Test!
 ```
-## Run the tests
+## Run the unit tests
 ```
 go mod tidy
 go test -count=1 ./...
