@@ -12,8 +12,9 @@
 | Implementing AES-GCM encryption/decryption & audit logging | 1 Hour |
 | Concurrency safety & error handling | 1 Hour |
 | Writing unit tests | 1 Hour |
+| Review and polishing | 1 Hour |
 | Documentation & README | 10 min |
-| **Total Estimated Time** | 5h |
+| **Total Estimated Time** | 6h |
 
 ## Architecture and design choices
 
