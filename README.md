@@ -15,11 +15,11 @@ Important to note, all architecture, design and code have beend developed by an 
 - [Architecture and design choices](#architecture-and-design-choices)
   - [Project structure](#project-structure)
 - [Security considerations](#security-considerations)
-- [How to run the service](#how-to-run-the-service)
+- [Run the service](run-the-service)
   - [Smoke test the service](#smoke-test-the-service)
     - [Expected results](#expected-results)
-- [How to run the tests](#how-to-run-the-tests)
-  - [With coverage and data race detection](#with-coverage-and-data-race-detection)
+- [Run the unit tests](#run-the-unit-tests)
+  - [Coverage and data race detection](#coverage-and-data-race-detection)
 - [Future work / Improvements](#future-work--improvements)
 
 ## Planning
