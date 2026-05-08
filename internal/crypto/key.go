@@ -10,4 +10,6 @@ type Key interface {
 	Decrypt(ctx context.Context, data []byte) ([]byte, error)
 
 	Export(ctx context.Context) ([]byte, error)
+	Wipe()
+	Clone() Key
 }
