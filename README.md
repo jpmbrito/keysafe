@@ -150,6 +150,8 @@ go test -coverprofile=code_coverage.out -count=1 -race ./...
 ```
 
 ## Future work / Improvements
+- Improved library documentation. Time was limited, but the code is largely self-explanatory
+- Document unit tests.
 - Bring code coverage up to 100%. Currently, due to time constraints is around ~80%
 - Implement authentication
 - Implement Shamir Secret Key to seal the vault. On first execution shares are printed. Later it's required to unlock the vault
