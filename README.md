@@ -62,7 +62,6 @@ internal\
     store\          > Abstraction and realization of key storage
     transport\http  > Http handlers and DTO
 ```
-By principle all go files shall have unit tests. Coverage is always measured.
 
 ## Security considerations
 
