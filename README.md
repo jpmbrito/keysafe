@@ -1,4 +1,4 @@
-# Enclaive Coding Challenge 2: Keysafe
+# Keysafe
 This repository implements a minimal security management service called KeySafe. Keysafe should allow users to:
 - create cryptographic keys
 - encrypt data using stored keys
@@ -42,7 +42,7 @@ Overall architectural division of concerns:
 1. Transport layer handles protocol-specific logic (e.g., HTTP). Request parsing and response formatting live in the transport/ directory. This ensures the core logic remains protocol-agnostic
 2. Transport layer acts as the entry point for business logic. It receives parsed data from the Transport layer and orchestrates the workflow
 3. Service layer executes the business logic. It interacts with crypto (only for key creation) and store (key storage).
-    - Both crypto and store are interfaces. Meaning it's possible to easily swith the underlying cryptographic type and key storage mechanism.
+    - Both crypto and store are interfaces. Meaning it's possible to easily switch the underlying cryptographic type and key storage mechanism.
     - key storage also uses crypto for sealing and unsealing
 
 Some additional generic design decisions and considerations:
