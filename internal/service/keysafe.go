@@ -19,6 +19,7 @@ func NewKeysafe(keyStore store.KeyStore) (*Keysafe, error) {
 	}, nil
 }
 
+// CreateKey service handler
 func (k *Keysafe) CreateKey(ctx context.Context) (string, error) {
 	// Idealy this service could be "generalized" so that the keytype is also a parameter. Probably using reflection or generics.
 	// However for the sake of simplicity I am going to realize here AES 256 GCM KEY as defined on the challenge document
@@ -45,10 +46,12 @@ func (k *Keysafe) CreateKey(ctx context.Context) (string, error) {
 	return uuid, nil
 }
 
+// ListKeys service handler
 func (k *Keysafe) ListKeys(ctx context.Context) ([]string, error) {
 	return k.keyStore.ListKeys(ctx)
 }
 
+// Encrypt service handler
 func (k *Keysafe) Encrypt(ctx context.Context, keyId string, data []byte) ([]byte, error) {
 	rawKey, err := k.keyStore.GetKey(ctx, keyId)
 	if err != nil {
@@ -72,6 +75,7 @@ func (k *Keysafe) Encrypt(ctx context.Context, keyId string, data []byte) ([]byt
 	return encryptedData, nil
 }
 
+// Decrypt service handler
 func (k *Keysafe) Decrypt(ctx context.Context, keyId string, data []byte) ([]byte, error) {
 	rawKey, err := k.keyStore.GetKey(ctx, keyId)
 	if err != nil {

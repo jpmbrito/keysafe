@@ -28,6 +28,7 @@ func NewInMemoryKeyStore(ctx context.Context, masterKey crypto.Key, maxNumberKey
 	}, nil
 }
 
+// getSealedKeyCopy is a private function that looks up a given key and performs a key object clone
 func (m *InMemoryKeyStore) getSealedKeyCopy(id string) (crypto.Key, bool) {
 	m.mutex.RLock()
 	defer m.mutex.RUnlock()
@@ -40,7 +41,7 @@ func (m *InMemoryKeyStore) getSealedKeyCopy(id string) (crypto.Key, bool) {
 	return key.Clone(), true
 }
 
-// SaveKey stores a key in memory storage. Caller key is not modified
+// SaveKey stores a key in memory storage. Caller key is not modified.
 func (m *InMemoryKeyStore) SaveKey(ctx context.Context, id string, key []byte) error {
 	// Lets make sure id doesn't exist to ensure we don't lose key material
 	// Indeed we could use getSealedKeyCopy, but we save up a memory copy
@@ -101,6 +102,7 @@ func (m *InMemoryKeyStore) GetKey(ctx context.Context, id string) ([]byte, error
 	return rawKey, nil
 }
 
+// ListKeys list all keys UUIDs
 func (m *InMemoryKeyStore) ListKeys(ctx context.Context) ([]string, error) {
 	m.mutex.RLock()
 	defer m.mutex.RUnlock()

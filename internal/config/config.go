@@ -13,6 +13,7 @@ type Config struct {
 	ListenAddress  string `env:"LISTEN_ADDRESS" json:"LISTEN_ADDRESS" default:"127.0.0.1:8000"`
 }
 
+// UnmarshalConfig populates the configuration with default values and overrides them using env vars
 func UnmarshalConfig(cfg any) error {
 	if err := defaults.Set(cfg); err != nil {
 		return fmt.Errorf("unable to set config defaults: %w", err)

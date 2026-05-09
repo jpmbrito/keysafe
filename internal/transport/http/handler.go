@@ -40,6 +40,7 @@ func httpOK(w http.ResponseWriter, v any) {
 	json.NewEncoder(w).Encode(v)
 }
 
+// CreateKey HTTP Handler
 func (s *Handler) CreateKey(w http.ResponseWriter, r *http.Request) {
 	// Create key has no request dto
 
@@ -55,6 +56,7 @@ func (s *Handler) CreateKey(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
+// ListKeys HTTP Handler
 func (s *Handler) ListKeys(w http.ResponseWriter, r *http.Request) {
 	// List keys have no request dto
 
@@ -70,6 +72,7 @@ func (s *Handler) ListKeys(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
+// Encrypt HTTP Handler
 func (s *Handler) Encrypt(w http.ResponseWriter, r *http.Request) {
 	var req dto.EncryptRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
@@ -105,6 +108,7 @@ func (s *Handler) Encrypt(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
+// Decrypt HTTP Handler
 func (s *Handler) Decrypt(w http.ResponseWriter, r *http.Request) {
 	var req dto.DecryptRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {

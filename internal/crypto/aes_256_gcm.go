@@ -16,6 +16,7 @@ type AES256GCMKey struct {
 	isWiped  bool
 }
 
+// NewAES256GCMKey creates a AES256GCMKey
 func NewAES256GCMKey(ctx context.Context) (*AES256GCMKey, error) {
 	Key := make([]byte, 32)
 	if _, err := io.ReadFull(rand.Reader, Key); err != nil {
@@ -28,6 +29,7 @@ func NewAES256GCMKey(ctx context.Context) (*AES256GCMKey, error) {
 	}, nil
 }
 
+// Seal encrypts the Key with master Key
 func (a *AES256GCMKey) Seal(ctx context.Context, masterKey Key) error {
 	var err error
 
@@ -50,6 +52,7 @@ func (a *AES256GCMKey) Seal(ctx context.Context, masterKey Key) error {
 	return nil
 }
 
+// Unseal decrypts the Key with master key
 func (a *AES256GCMKey) Unseal(ctx context.Context, masterKey Key) error {
 	var err error
 
@@ -72,6 +75,7 @@ func (a *AES256GCMKey) Unseal(ctx context.Context, masterKey Key) error {
 	return nil
 }
 
+// Export duplicates the raw Key to a byte slice
 func (a *AES256GCMKey) Export(ctx context.Context) ([]byte, error) {
 	if a.isWiped {
 		return nil, stacktrace.NewError("Key is wiped")
@@ -85,6 +89,7 @@ func (a *AES256GCMKey) Export(ctx context.Context) ([]byte, error) {
 	return append([]byte(nil), a.Key...), nil
 }
 
+// Encrypt encrypts a data blob
 func (a *AES256GCMKey) Encrypt(ctx context.Context, data []byte) ([]byte, error) {
 	if a.isWiped {
 		return nil, stacktrace.NewError("Key is wiped")
@@ -107,6 +112,7 @@ func (a *AES256GCMKey) Encrypt(ctx context.Context, data []byte) ([]byte, error)
 	return aesgcm.Seal(nonce, nonce, data, nil), nil
 }
 
+// Decrypt decryps a data blob
 func (a *AES256GCMKey) Decrypt(ctx context.Context, data []byte) ([]byte, error) {
 	if a.isWiped {
 		return nil, stacktrace.NewError("Key is wiped")
@@ -142,11 +148,13 @@ func (a *AES256GCMKey) Decrypt(ctx context.Context, data []byte) ([]byte, error)
 	return plaintext, nil
 }
 
+// Wipe zeros the key so that plaintext keys are short-lived in RAM, ensuring we do not rely on the GC and maintain full control
 func (a *AES256GCMKey) Wipe() {
 	clear(a.Key)
 	a.isWiped = true
 }
 
+// Clone clones the key object
 func (k *AES256GCMKey) Clone() Key {
 	return &AES256GCMKey{
 		Key:      append([]byte(nil), k.Key...),

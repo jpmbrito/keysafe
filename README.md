@@ -80,6 +80,11 @@ MAX_KEY_STORAGE=100 go run cmd/keysafe/main.go
 ```
 Env vars always overwrite the .env definition.
 
+### Supported configurations
+- `KeyStorageType`: Currently only supports `in-memory`, but the goal is to support different storage types  by changing this configuration (default: `in-memory`).
+- `MaxKeyStorage`: Defines how many keys the Keysafe can store. Set `0` for unlimited (default: `0`).
+- `ListenAddress`: Specifies the address/port where the server will listen.
+
 ### Smoke test the service
 Terminal 1: Launch the keysafe webservice
 ```
