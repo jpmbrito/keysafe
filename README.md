@@ -5,9 +5,6 @@ This repository implements a minimal security management service called KeySafe.
 - decrypt previously encrypted data
 - list available keys
 
-For more information about the detail requirements:
-https://docs.google.com/document/d/1xCU4lTI28lcYm7_n_H5Z7mR4l322-H-Z3Qpw3zlN0bQ/edit?usp=sharing
-
 Important to note, all architecture, design and code have beend developed by an Human. No LLM was used in this context.
 
 ## Table of contents
