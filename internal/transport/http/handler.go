@@ -48,6 +48,7 @@ func (s *Handler) CreateKey(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		s.logger.Log("POST /keys", "", err)
 		httpError(w, http.StatusInternalServerError, "Error during key creation", err)
+		return
 	}
 
 	s.logger.Log("POST /keys", keyID, nil)
@@ -64,6 +65,7 @@ func (s *Handler) ListKeys(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		s.logger.Log("GET /keys", "", err)
 		httpError(w, http.StatusInternalServerError, "Error listing keys", err)
+		return
 	}
 
 	s.logger.Log("GET /keys", "", nil)
