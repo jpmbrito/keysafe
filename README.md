@@ -102,7 +102,7 @@ Terminal 1:
 Configuration:
 {
   "KEY_STORAGE": "in-memory",
-  "MAX_KEY_STORAGE": 100,
+  "MAX_KEY_STORAGE": 0,
   "LISTEN_ADDRESS": ":8000"
 }
 Setting up 'in-memory' Keystorage
