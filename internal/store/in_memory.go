@@ -44,6 +44,7 @@ func (m *InMemoryKeyStore) getSealedKeyCopy(id string) (crypto.Key, bool) {
 // SaveKey stores a key in memory storage. Caller key is not modified.
 func (m *InMemoryKeyStore) SaveKey(ctx context.Context, id string, key []byte) error {
 	// Quick read-lock to check for duplicates and current capacity. Seal can be expensive.
+	// Off course this can be done because UUIDs are unique. Let's keep out of scope UUID generation collision for simplicity.
 	m.mutex.RLock()
 	_, ok := m.keyStore[id]
 	keyStorageSize := len(m.keyStore)
