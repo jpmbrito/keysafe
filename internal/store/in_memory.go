@@ -58,8 +58,7 @@ func (m *InMemoryKeyStore) SaveKey(ctx context.Context, id string, key []byte) e
 		return stacktrace.NewError("Key storage is full")
 	}
 
-	// Unfortunately we need to realize. We would need to change the interface to generalize
-	// and pass directly the object
+	// Unfortunately we need to realize AES-256-GCM-Key here. We can't use the abstract interface.
 	keyImport := &crypto.AES256GCMKey{
 		Key:      append([]byte(nil), key...), // Lets explicit copy so that we don't change the state of the caller. Caller might want to operate over the key material
 		IsSealed: false,
