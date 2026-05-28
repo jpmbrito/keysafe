@@ -1,6 +1,6 @@
 module keysafe
 
-go 1.22.2
+go 1.26.3
 
 require (
 	github.com/caarlos0/env/v6 v6.10.1
@@ -8,6 +8,11 @@ require (
 	github.com/google/uuid v1.6.0
 	github.com/joho/godotenv v1.5.1
 	github.com/palantir/stacktrace v0.0.0-20161112013806-78658fd2d177
+)
+
+require (
+	github.com/prometheus/procfs v0.20.1 // indirect
+	golang.org/x/sys v0.41.0 // indirect
 )
 
 require (

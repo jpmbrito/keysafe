@@ -6,6 +6,9 @@ import (
 	"crypto/cipher"
 	"crypto/rand"
 	"io"
+	"reflect"
+	"runtime"
+	"unsafe"
 
 	"github.com/palantir/stacktrace"
 )
@@ -46,6 +49,7 @@ func (a *AES256GCMKey) Seal(ctx context.Context, masterKey Key) error {
 		return stacktrace.Propagate(err, "")
 	}
 
+	clear(a.Key)
 	a.Key = sealedKey
 	a.IsSealed = true
 
@@ -69,6 +73,7 @@ func (a *AES256GCMKey) Unseal(ctx context.Context, masterKey Key) error {
 		return stacktrace.Propagate(err, "")
 	}
 
+	clear(a.Key)
 	a.Key = unsealedKey
 	a.IsSealed = false
 
@@ -89,6 +94,30 @@ func (a *AES256GCMKey) Export(ctx context.Context) ([]byte, error) {
 	return append([]byte(nil), a.Key...), nil
 }
 
+// wipeBlock zeroes the internal expanded key schedule of a cipher.Block returned by aes.NewCipher.
+//
+// This is a best-effort memory hygiene practice. It does not guarantee that all copies
+// are cleared due to Go runtime stack growth, GC relocation, and compiler optimizations—making
+// it a bit of a futile exercise in reality.
+//
+// Nevertheless, I believe memory hygiene is important, and it is a practice I have maintained
+// throughout the years. It serves as a defensive best practice; in the event that a device
+// is compromised or jailbroken, we at least make the attacker's life a little more miserable.
+//
+// While this level of control can be easily achieved using C++ smart pointers or Rust. Golang with
+// all its beauty, was simply not designed for it and I do off course understand. Just use a TEE and you are fine.
+func wipeBlock(block cipher.Block) {
+	v := reflect.ValueOf(block)
+	if v.Kind() == reflect.Ptr {
+		v = v.Elem()
+	}
+	size := v.Type().Size()
+	ptr := unsafe.Pointer(v.UnsafeAddr())
+	mem := unsafe.Slice((*byte)(ptr), size)
+	clear(mem)
+	runtime.GC()
+}
+
 // Encrypt encrypts a data blob
 func (a *AES256GCMKey) Encrypt(ctx context.Context, data []byte) ([]byte, error) {
 	if a.isWiped {
@@ -103,13 +132,14 @@ func (a *AES256GCMKey) Encrypt(ctx context.Context, data []byte) ([]byte, error)
 	if err != nil {
 		return nil, stacktrace.Propagate(err, "")
 	}
-	aesgcm, _ := cipher.NewGCM(block)
-	nonce := make([]byte, aesgcm.NonceSize())
-	if _, err := io.ReadFull(rand.Reader, nonce); err != nil {
+	defer wipeBlock(block)
+
+	aesgcm, err := cipher.NewGCMWithRandomNonce(block)
+	if err != nil {
 		return nil, stacktrace.Propagate(err, "")
 	}
 
-	return aesgcm.Seal(nonce, nonce, data, nil), nil
+	return aesgcm.Seal(nil, nil, data, nil), nil
 }
 
 // Decrypt decryps a data blob
@@ -126,21 +156,14 @@ func (a *AES256GCMKey) Decrypt(ctx context.Context, data []byte) ([]byte, error)
 	if err != nil {
 		return nil, stacktrace.Propagate(err, "")
 	}
+	defer wipeBlock(block)
 
-	aesgcm, err := cipher.NewGCM(block)
+	aesgcm, err := cipher.NewGCMWithRandomNonce(block)
 	if err != nil {
 		return nil, stacktrace.Propagate(err, "")
 	}
 
-	nonceSize := aesgcm.NonceSize()
-	if len(data) < nonceSize {
-		return nil, stacktrace.NewError("ciphertext too short")
-	}
-
-	// remove the nonce
-	nonce, ciphertext := data[:nonceSize], data[nonceSize:]
-
-	plaintext, err := aesgcm.Open(nil, nonce, ciphertext, nil)
+	plaintext, err := aesgcm.Open(nil, nil, data, nil)
 	if err != nil {
 		return nil, stacktrace.Propagate(err, "")
 	}
@@ -148,9 +171,12 @@ func (a *AES256GCMKey) Decrypt(ctx context.Context, data []byte) ([]byte, error)
 	return plaintext, nil
 }
 
-// Wipe zeros the key so that plaintext keys are short-lived in RAM, ensuring we do not rely on the GC and maintain full control
+// Attempt to zero plain text material from RAM
+// same as I mentioned in wipeBlock. Best effort. Calling GC, by experience, improves a bit.
+// I will keep it as part of this exercice. There is a runtime penalty, but it's ok for this.
 func (a *AES256GCMKey) Wipe() {
 	clear(a.Key)
+	runtime.GC()
 	a.isWiped = true
 }
 
