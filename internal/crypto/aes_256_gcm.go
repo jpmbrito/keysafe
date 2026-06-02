@@ -1,3 +1,5 @@
+//go:build goexperiment.runtimesecret
+
 package crypto
 
 import (
@@ -6,9 +8,8 @@ import (
 	"crypto/cipher"
 	"crypto/rand"
 	"io"
-	"reflect"
 	"runtime"
-	"unsafe"
+	"runtime/secret"
 
 	"github.com/palantir/stacktrace"
 )
@@ -34,8 +35,6 @@ func NewAES256GCMKey(ctx context.Context) (*AES256GCMKey, error) {
 
 // Seal encrypts the Key with master Key
 func (a *AES256GCMKey) Seal(ctx context.Context, masterKey Key) error {
-	var err error
-
 	if a.isWiped {
 		return stacktrace.NewError("Key is wiped")
 	}
@@ -44,7 +43,13 @@ func (a *AES256GCMKey) Seal(ctx context.Context, masterKey Key) error {
 		return stacktrace.NewError("Key is sealed")
 	}
 
-	sealedKey, err := masterKey.Encrypt(ctx, a.Key)
+	var sealedKey []byte
+	var err error
+
+	secret.Do(func() {
+		sealedKey, err = masterKey.Encrypt(ctx, a.Key)
+	})
+
 	if err != nil {
 		return stacktrace.Propagate(err, "")
 	}
@@ -58,8 +63,6 @@ func (a *AES256GCMKey) Seal(ctx context.Context, masterKey Key) error {
 
 // Unseal decrypts the Key with master key
 func (a *AES256GCMKey) Unseal(ctx context.Context, masterKey Key) error {
-	var err error
-
 	if a.isWiped {
 		return stacktrace.NewError("Key is wiped")
 	}
@@ -68,7 +71,13 @@ func (a *AES256GCMKey) Unseal(ctx context.Context, masterKey Key) error {
 		return stacktrace.NewError("Key is unsealed")
 	}
 
-	unsealedKey, err := masterKey.Decrypt(ctx, a.Key)
+	var unsealedKey []byte
+	var err error
+
+	secret.Do(func() {
+		unsealedKey, err = masterKey.Decrypt(ctx, a.Key)
+	})
+
 	if err != nil {
 		return stacktrace.Propagate(err, "")
 	}
@@ -94,30 +103,6 @@ func (a *AES256GCMKey) Export(ctx context.Context) ([]byte, error) {
 	return append([]byte(nil), a.Key...), nil
 }
 
-// wipeBlock zeroes the internal expanded key schedule of a cipher.Block returned by aes.NewCipher.
-//
-// This is a best-effort memory hygiene practice. It does not guarantee that all copies
-// are cleared due to Go runtime stack growth, GC relocation, and compiler optimizations—making
-// it a bit of a futile exercise in reality.
-//
-// Nevertheless, I believe memory hygiene is important, and it is a practice I have maintained
-// throughout the years. It serves as a defensive best practice; in the event that a device
-// is compromised or jailbroken, we at least make the attacker's life a little more miserable.
-//
-// While this level of control can be easily achieved using C++ smart pointers or Rust. Golang with
-// all its beauty, was simply not designed for it and I do off course understand. Just use a TEE and you are fine.
-func wipeBlock(block cipher.Block) {
-	v := reflect.ValueOf(block)
-	if v.Kind() == reflect.Ptr {
-		v = v.Elem()
-	}
-	size := v.Type().Size()
-	ptr := unsafe.Pointer(v.UnsafeAddr())
-	mem := unsafe.Slice((*byte)(ptr), size)
-	clear(mem)
-	runtime.GC()
-}
-
 // Encrypt encrypts a data blob
 func (a *AES256GCMKey) Encrypt(ctx context.Context, data []byte) ([]byte, error) {
 	if a.isWiped {
@@ -128,21 +113,33 @@ func (a *AES256GCMKey) Encrypt(ctx context.Context, data []byte) ([]byte, error)
 		return nil, stacktrace.NewError("Key is sealed")
 	}
 
-	block, err := aes.NewCipher(a.Key)
+	var result []byte
+	var err error
+
+	secret.Do(func() {
+		var block cipher.Block
+		block, err = aes.NewCipher(a.Key)
+		if err != nil {
+			return
+		}
+
+		var aesgcm cipher.AEAD
+		aesgcm, err = cipher.NewGCMWithRandomNonce(block)
+		if err != nil {
+			return
+		}
+
+		result = aesgcm.Seal(nil, nil, data, nil)
+	})
+
 	if err != nil {
 		return nil, stacktrace.Propagate(err, "")
 	}
-	defer wipeBlock(block)
 
-	aesgcm, err := cipher.NewGCMWithRandomNonce(block)
-	if err != nil {
-		return nil, stacktrace.Propagate(err, "")
-	}
-
-	return aesgcm.Seal(nil, nil, data, nil), nil
+	return result, nil
 }
 
-// Decrypt decryps a data blob
+// Decrypt decrypts a data blob
 func (a *AES256GCMKey) Decrypt(ctx context.Context, data []byte) ([]byte, error) {
 	if a.isWiped {
 		return nil, stacktrace.NewError("Key is wiped")
@@ -152,23 +149,30 @@ func (a *AES256GCMKey) Decrypt(ctx context.Context, data []byte) ([]byte, error)
 		return nil, stacktrace.NewError("Key is sealed")
 	}
 
-	block, err := aes.NewCipher(a.Key)
+	var result []byte
+	var err error
+
+	secret.Do(func() {
+		var block cipher.Block
+		block, err = aes.NewCipher(a.Key)
+		if err != nil {
+			return
+		}
+
+		var aesgcm cipher.AEAD
+		aesgcm, err = cipher.NewGCMWithRandomNonce(block)
+		if err != nil {
+			return
+		}
+
+		result, err = aesgcm.Open(nil, nil, data, nil)
+	})
+
 	if err != nil {
 		return nil, stacktrace.Propagate(err, "")
 	}
-	defer wipeBlock(block)
 
-	aesgcm, err := cipher.NewGCMWithRandomNonce(block)
-	if err != nil {
-		return nil, stacktrace.Propagate(err, "")
-	}
-
-	plaintext, err := aesgcm.Open(nil, nil, data, nil)
-	if err != nil {
-		return nil, stacktrace.Propagate(err, "")
-	}
-
-	return plaintext, nil
+	return result, nil
 }
 
 // Attempt to zero plain text material from RAM

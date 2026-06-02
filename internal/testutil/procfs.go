@@ -60,9 +60,9 @@ func ScanProcessMemoryForPattern(t *testing.T, pattern []byte) (int, []string) {
 	require.NoError(t, err, "cannot open /proc/self/mem: requires Linux with procfs")
 	defer f.Close()
 
-	const chunkSize = 4 * 1024 * 1024
-	overlap := len(pattern) - 1
-	buf := make([]byte, chunkSize)
+	const pageSize = 4096
+	buf := make([]byte, pageSize)
+	carry := make([]byte, 0, len(pattern)-1)
 
 	totalCount := 0
 	var matchingRegions []string
@@ -71,24 +71,35 @@ func ScanProcessMemoryForPattern(t *testing.T, pattern []byte) (int, []string) {
 		regionStart := int64(m.StartAddr)
 		regionEnd := int64(m.EndAddr)
 		regionMatches := 0
+		carry = carry[:0]
 
-		offset := regionStart
-		for offset < regionEnd {
-			readSize := chunkSize
+		for offset := regionStart; offset < regionEnd; offset += pageSize {
+			readSize := pageSize
 			if offset+int64(readSize) > regionEnd {
 				readSize = int(regionEnd - offset)
 			}
 
 			n, err := f.ReadAt(buf[:readSize], offset)
 			if err != nil || n == 0 {
-				break
+				// Unreadable page, skip and reset carry
+				carry = carry[:0]
+				continue
 			}
 
+			// Check for pattern straddling previous page and this one
+			if len(carry) > 0 {
+				bridge := append(carry, buf[:min(n, len(pattern)-1)]...)
+				regionMatches += countOccurrences(bridge, pattern)
+			}
+
+			// Scan current page
 			regionMatches += countOccurrences(buf[:n], pattern)
 
-			offset += int64(n - overlap)
-			if n < chunkSize {
-				break
+			// Save tail for next iteration
+			if len(pattern) > 1 && n >= len(pattern)-1 {
+				carry = append(carry[:0], buf[n-(len(pattern)-1):n]...)
+			} else {
+				carry = append(carry[:0], buf[:n]...)
 			}
 		}
 

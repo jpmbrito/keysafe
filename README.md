@@ -137,18 +137,18 @@ Some Test!
 ```
 ## Run the unit tests
 ```
-go mod tidy
-go test -count=1 ./...
+GOEXPERIMENT=runtimesecret go mod tidy
+GOEXPERIMENT=runtimesecret go test -count=1 ./...
 ```
 
 ### Coverage and data race detection
 #### Verbose
 ```
-go test -coverprofile=code_coverage.out -v -count=1 -race ./...
+GOEXPERIMENT=runtimesecret go test -coverprofile=code_coverage.out -v -count=1 -race ./...
 ```
 #### Silent
 ```
-go test -coverprofile=code_coverage.out -count=1 -race ./...
+GOEXPERIMENT=runtimesecret go test -coverprofile=code_coverage.out -count=1 -race ./...
 ```
 
 ## Future work / Improvements

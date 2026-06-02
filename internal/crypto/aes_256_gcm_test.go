@@ -3,6 +3,7 @@ package crypto
 import (
 	"context"
 	"runtime"
+	"runtime/secret"
 	"testing"
 
 	"keysafe/internal/testutil"
@@ -79,32 +80,18 @@ func TestAES256GCMKey_ShortCiphertext(t *testing.T) {
 }
 
 // The aim of this test is to validate the memory hygiene capabilities of the AES-256-GCM module.
-// Unfortunately it's not possible, deterministically, to detect whether or not clear() is used.
-// There are many reasons for it:
-//
-// 1. Heisenberg effect: The act of scanning process memory copies the key pattern into the
-//    scanner's own buffers, can create false positives.
-//
-// 2. Go internal memory management: The runtime may relocate heap objects during GC compaction,
-//    leaving stale copies in previously-used pages. Stack growth copies goroutine stacks to new
-//    locations without zeroing the old one immediately.
-//
-// 3. Scanning process memory is insufficient because the runtime calls memclrNoHeapPointers
-//    (runtime/stack.go:995) when shrinking or freeing goroutine stacks, which may zero
-//    stack-resident key copies without any explicit action from user code — causing false
-//    negatives.
-//    See: https://github.com/golang/go/blob/go1.26.3/src/runtime/stack.go#L995
-//
-// However, by running this test multiple times (see evidence/ folder), it's clear that memory
-// hygiene improves when explicit clear() is used. The test passes regardless, logging occurrence
-// counts at each lifecycle step for observational evidence. However assertions are not reliable.
-
 func TestAES256GCMKey_EncryptDecryptMemoryHygiene(t *testing.T) {
 	if runtime.GOOS != "linux" {
 		t.Skip("procfs memory scanning requires Linux")
 	}
 
 	ctx := context.Background()
+
+	var secretEnabled bool
+	secret.Do(func() {
+		secretEnabled = secret.Enabled()
+	})
+	assert.True(t, secretEnabled)
 
 	// 1. Generate key
 	key, err := NewAES256GCMKey(ctx)
@@ -120,9 +107,8 @@ func TestAES256GCMKey_EncryptDecryptMemoryHygiene(t *testing.T) {
 
 	countAfterExport, _ := testutil.ScanProcessMemoryForPattern(t, rawKey)
 	t.Logf("After Export: %d occurrence(s)", countAfterExport)
-	// assert.GreaterOrEqual(t, countAfterExport, countAfterCreate, "key should be in memory after Export") // Flacky
 
-	// 3. Encrypt (3x)
+	// 3. Encrypt (3x) — with secret.Do, occurrences stay bounded (≤ 6)
 	plaintext := []byte("sensitive data for memory lifecycle test")
 	for i := range 3 {
 		ciphertext, err := key.Encrypt(ctx, plaintext)
@@ -131,7 +117,7 @@ func TestAES256GCMKey_EncryptDecryptMemoryHygiene(t *testing.T) {
 
 		count, _ := testutil.ScanProcessMemoryForPattern(t, rawKey)
 		t.Logf("After Encrypt #%d: %d occurrence(s)", i+1, count)
-		assert.GreaterOrEqual(t, count, countAfterExport)
+		assert.LessOrEqual(t, count, 6)
 	}
 
 	// 4. Decrypt (3x)
@@ -144,7 +130,7 @@ func TestAES256GCMKey_EncryptDecryptMemoryHygiene(t *testing.T) {
 
 		count, _ := testutil.ScanProcessMemoryForPattern(t, rawKey)
 		t.Logf("After Decrypt #%d: %d occurrence(s)", i+1, count)
-		assert.GreaterOrEqual(t, count, countAfterExport)
+		assert.LessOrEqual(t, count, 6)
 	}
 
 	// 5. Seal/Unseal (3x)
@@ -157,13 +143,14 @@ func TestAES256GCMKey_EncryptDecryptMemoryHygiene(t *testing.T) {
 
 		count, _ := testutil.ScanProcessMemoryForPattern(t, rawKey)
 		t.Logf("After Seal #%d: %d occurrence(s)", i+1, count)
+		assert.Equal(t, 1, count)
 
 		err = key.Unseal(ctx, masterKey)
 		require.NoError(t, err)
 
 		count, _ = testutil.ScanProcessMemoryForPattern(t, rawKey)
 		t.Logf("After Unseal #%d: %d occurrence(s)", i+1, count)
-		assert.GreaterOrEqual(t, count, countAfterExport)
+		assert.Equal(t, 2, count)
 	}
 
 	// Step 6. Wipe
@@ -174,4 +161,5 @@ func TestAES256GCMKey_EncryptDecryptMemoryHygiene(t *testing.T) {
 
 	countAfterWipe, regions := testutil.ScanProcessMemoryForPattern(t, scanPattern)
 	t.Logf("After Wipe: %d occurrence(s) in regions: %v", countAfterWipe, regions)
+	assert.LessOrEqual(t, countAfterWipe, 3) // after wipe, only scanPattern + scanner buffer copies should remain
 }
