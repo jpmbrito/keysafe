@@ -1,0 +1,600 @@
+=== Run 1 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 1 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 6 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 10 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 8 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 10 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 2 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 4 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 2 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 4 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 2 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 4 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 2 occurrence(s) in regions: [[anon: Go: heap] [171142c00000-171143c00000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.53s)
+PASS
+ok  	keysafe/internal/crypto	0.530s
+=== Run 2 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 2 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 9 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 11 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 13 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 15 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 18 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 6 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 9 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 6 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 9 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 6 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 3 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 6 occurrence(s) in regions: [[anon: Go: heap] [10f00800000-10f01400000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.57s)
+PASS
+ok  	keysafe/internal/crypto	0.571s
+=== Run 3 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 1 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 4 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 8 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 6 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 4 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 6 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 4 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 6 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 4 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 6 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 4 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 4 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 2 occurrence(s) in regions: [[anon: Go: heap] [376ab7c00000-376ab8c00000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.58s)
+PASS
+ok  	keysafe/internal/crypto	0.586s
+=== Run 4 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 1 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 5 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 7 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 3 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 2 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 3 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 4 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 4 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 2 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 4 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 2 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 4 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 1 occurrence(s) in regions: [[anon: Go: heap] [9e199c00000-9e19ac00000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.71s)
+PASS
+ok  	keysafe/internal/crypto	0.716s
+=== Run 5 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 1 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 3 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 4 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 4 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 10 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 7 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 8 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 6 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 7 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 6 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 7 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 6 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 4 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 3 occurrence(s) in regions: [[anon: Go: heap] [1c97e9800000-1c97ea800000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.78s)
+PASS
+ok  	keysafe/internal/crypto	0.781s
+=== Run 6 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 1 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 3 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 8 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 4 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 6 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 4 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 4 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 2 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 4 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 2 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 2 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 2 occurrence(s) in regions: [[anon: Go: heap] [151ac3800000-151ac4400000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.72s)
+PASS
+ok  	keysafe/internal/crypto	0.729s
+=== Run 7 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 2 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 9 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 11 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 9 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 11 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 13 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 6 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 9 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 6 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 9 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 6 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 3 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 6 occurrence(s) in regions: [[anon: Go: heap] [3cb85f400000-3cb860000000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.72s)
+PASS
+ok  	keysafe/internal/crypto	0.726s
+=== Run 8 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 1 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 3 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 4 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 5 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 5 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 2 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 1 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 2 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 1 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 2 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 1 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 2 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 1 occurrence(s) in regions: [[anon: Go: heap] [169607400000-169608400000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.85s)
+PASS
+ok  	keysafe/internal/crypto	0.854s
+=== Run 9 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 1 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 6 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 11 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 6 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 10 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 9 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 2 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 1 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 2 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 1 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 2 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 1 occurrence(s) in regions: [[anon: Go: heap] [3af97c800000-3af97d800000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.76s)
+PASS
+ok  	keysafe/internal/crypto	0.768s
+=== Run 10 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 1 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 7 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 7 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 7 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 3 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 7 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 12 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 11 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 12 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 3 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 2 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 1 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 2 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 1 occurrence(s) in regions: [[anon: Go: heap] [50fb2800000-50fb3c00000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.66s)
+PASS
+ok  	keysafe/internal/crypto	0.665s
+=== Run 11 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 2 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 11 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 8 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 14 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 4 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 6 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 4 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 8 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 4 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 2 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 4 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 8 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 3 occurrence(s) in regions: [[anon: Go: heap] [36dc5800000-36dc6400000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.66s)
+PASS
+ok  	keysafe/internal/crypto	0.663s
+=== Run 12 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 1 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 4 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 6 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 8 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 4 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 2 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 2 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 4 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 2 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 4 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 2 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 4 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 2 occurrence(s) in regions: [[anon: Go: heap] [35ef6e400000-35ef6f000000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.67s)
+PASS
+ok  	keysafe/internal/crypto	0.679s
+=== Run 13 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 1 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 8 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 8 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 6 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 6 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 4 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 6 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 8 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 6 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 8 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 6 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 8 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 4 occurrence(s) in regions: [[anon: Go: heap] [20c8a7000000-20c8a8000000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.66s)
+PASS
+ok  	keysafe/internal/crypto	0.668s
+=== Run 14 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 2 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 9 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 9 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 9 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 9 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 12 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 9 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 6 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 3 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 6 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 3 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 6 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 3 occurrence(s) in regions: [[anon: Go: heap] [37a911c00000-37a912800000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.72s)
+PASS
+ok  	keysafe/internal/crypto	0.727s
+=== Run 15 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 1 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 4 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 4 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 6 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 6 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 8 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 3 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 4 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 2 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 2 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 2 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 4 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 2 occurrence(s) in regions: [[anon: Go: heap] [294978800000-294979400000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.80s)
+PASS
+ok  	keysafe/internal/crypto	0.803s
+=== Run 16 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 1 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 10 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 6 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 10 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 5 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 9 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 10 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 9 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 10 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 9 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 10 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 12 occurrence(s) in regions: [[anon: Go: heap] [d1498c00000-d1499c00000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.75s)
+PASS
+ok  	keysafe/internal/crypto	0.756s
+=== Run 17 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 1 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 8 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 10 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 10 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 10 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 10 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 8 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 10 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 8 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 6 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 2 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 4 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 2 occurrence(s) in regions: [[anon: Go: heap] [3cbc24400000-3cbc25400000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.61s)
+PASS
+ok  	keysafe/internal/crypto	0.611s
+=== Run 18 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 1 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 2 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 8 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 6 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 4 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 2 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 4 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 2 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 2 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 2 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 4 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 2 occurrence(s) in regions: [[anon: Go: heap] [221161400000-221162400000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.59s)
+PASS
+ok  	keysafe/internal/crypto	0.594s
+=== Run 19 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 1 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 8 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 8 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 10 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 10 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 12 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 10 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 12 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 10 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 12 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 8 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 10 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 8 occurrence(s) in regions: [[anon: Go: heap] [116c80400000-116c81400000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.54s)
+PASS
+ok  	keysafe/internal/crypto	0.544s
+=== Run 20 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 1 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 5 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 2 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 2 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 11 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 2 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 1 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 2 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 1 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 2 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 1 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 2 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 1 occurrence(s) in regions: [[anon: Go: heap] [3e226ac00000-3e226bc00000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.70s)
+PASS
+ok  	keysafe/internal/crypto	0.704s
+=== Run 21 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 1 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 3 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 4 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 6 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 5 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 6 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 5 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 6 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 5 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 6 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 5 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 6 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 5 occurrence(s) in regions: [[anon: Go: heap] [15085e800000-15085f800000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.67s)
+PASS
+ok  	keysafe/internal/crypto	0.675s
+=== Run 22 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 1 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 8 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 3 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 14 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 20 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 19 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 20 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 19 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 20 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 13 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 14 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 13 occurrence(s) in regions: [[anon: Go: heap] [fbc65000000-fbc66000000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.62s)
+PASS
+ok  	keysafe/internal/crypto	0.623s
+=== Run 23 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 1 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 4 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 4 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 6 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 8 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 10 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 4 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 3 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 4 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 4 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 2 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 4 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 2 occurrence(s) in regions: [[anon: Go: heap] [2c88cc000000-2c88cd000000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.56s)
+PASS
+ok  	keysafe/internal/crypto	0.560s
+=== Run 24 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 1 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 7 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 9 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 12 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 12 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 14 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 7 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 10 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 10 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 7 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 4 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 3 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 10 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 7 occurrence(s) in regions: [[anon: Go: heap] [30383c400000-30383d000000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.61s)
+PASS
+ok  	keysafe/internal/crypto	0.618s
+=== Run 25 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 2 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 8 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 8 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 13 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 12 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 14 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 5 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 14 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 11 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 14 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 11 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 12 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 7 occurrence(s) in regions: [[anon: Go: heap] [cf934400000-cf935000000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.54s)
+PASS
+ok  	keysafe/internal/crypto	0.545s
+=== Run 26 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 2 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 8 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 8 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 8 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 10 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 7 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 10 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 3 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 4 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 3 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 3 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 2 occurrence(s) in regions: [[anon: Go: heap] [34d516400000-34d517000000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.57s)
+PASS
+ok  	keysafe/internal/crypto	0.576s
+=== Run 27 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 2 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 7 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 8 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 9 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 4 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 12 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 7 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 4 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 2 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 3 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 6 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 3 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 6 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 3 occurrence(s) in regions: [[anon: Go: heap] [f5318c00000-f5319800000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.58s)
+PASS
+ok  	keysafe/internal/crypto	0.587s
+=== Run 28 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 3 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 11 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 12 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 14 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 3 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 14 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 11 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 5 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 10 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 5 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 10 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 5 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 10 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 4 occurrence(s) in regions: [[anon: Go: heap] [2e6a8dc00000-2e6a8ec00000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.55s)
+PASS
+ok  	keysafe/internal/crypto	0.558s
+=== Run 29 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 1 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 7 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 12 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 12 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 12 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 17 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 16 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 17 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 16 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 17 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 4 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 12 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 11 occurrence(s) in regions: [[anon: Go: heap] [308259400000-30825a400000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.56s)
+PASS
+ok  	keysafe/internal/crypto	0.562s
+=== Run 30 ===
+=== RUN   TestAES256GCMKey_EncryptDecryptMemoryHygiene
+    aes_256_gcm_test.go:114: After NewAES256GCMKey: 1 occurrence(s)
+    aes_256_gcm_test.go:122: After Export: 2 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #1: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #2: 6 occurrence(s)
+    aes_256_gcm_test.go:133: After Encrypt #3: 6 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #1: 8 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #2: 6 occurrence(s)
+    aes_256_gcm_test.go:146: After Decrypt #3: 8 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #1: 6 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #1: 8 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #2: 6 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #2: 8 occurrence(s)
+    aes_256_gcm_test.go:159: After Seal #3: 6 occurrence(s)
+    aes_256_gcm_test.go:165: After Unseal #3: 8 occurrence(s)
+    aes_256_gcm_test.go:176: After Wipe: 6 occurrence(s) in regions: [[anon: Go: heap] [2cbdb3800000-2cbdb4800000]]
+--- PASS: TestAES256GCMKey_EncryptDecryptMemoryHygiene (0.55s)
+PASS
+ok  	keysafe/internal/crypto	0.557s

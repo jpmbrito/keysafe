@@ -1,3 +1,5 @@
+//go:build goexperiment.runtimesecret
+
 package crypto
 
 import (
@@ -6,6 +8,8 @@ import (
 	"crypto/cipher"
 	"crypto/rand"
 	"io"
+	"runtime"
+	"runtime/secret"
 
 	"github.com/palantir/stacktrace"
 )
@@ -31,8 +35,6 @@ func NewAES256GCMKey(ctx context.Context) (*AES256GCMKey, error) {
 
 // Seal encrypts the Key with master Key
 func (a *AES256GCMKey) Seal(ctx context.Context, masterKey Key) error {
-	var err error
-
 	if a.isWiped {
 		return stacktrace.NewError("Key is wiped")
 	}
@@ -41,11 +43,18 @@ func (a *AES256GCMKey) Seal(ctx context.Context, masterKey Key) error {
 		return stacktrace.NewError("Key is sealed")
 	}
 
-	sealedKey, err := masterKey.Encrypt(ctx, a.Key)
+	var sealedKey []byte
+	var err error
+
+	secret.Do(func() {
+		sealedKey, err = masterKey.Encrypt(ctx, a.Key)
+	})
+
 	if err != nil {
 		return stacktrace.Propagate(err, "")
 	}
 
+	clear(a.Key)
 	a.Key = sealedKey
 	a.IsSealed = true
 
@@ -54,8 +63,6 @@ func (a *AES256GCMKey) Seal(ctx context.Context, masterKey Key) error {
 
 // Unseal decrypts the Key with master key
 func (a *AES256GCMKey) Unseal(ctx context.Context, masterKey Key) error {
-	var err error
-
 	if a.isWiped {
 		return stacktrace.NewError("Key is wiped")
 	}
@@ -64,11 +71,18 @@ func (a *AES256GCMKey) Unseal(ctx context.Context, masterKey Key) error {
 		return stacktrace.NewError("Key is unsealed")
 	}
 
-	unsealedKey, err := masterKey.Decrypt(ctx, a.Key)
+	var unsealedKey []byte
+	var err error
+
+	secret.Do(func() {
+		unsealedKey, err = masterKey.Decrypt(ctx, a.Key)
+	})
+
 	if err != nil {
 		return stacktrace.Propagate(err, "")
 	}
 
+	clear(a.Key)
 	a.Key = unsealedKey
 	a.IsSealed = false
 
@@ -99,20 +113,33 @@ func (a *AES256GCMKey) Encrypt(ctx context.Context, data []byte) ([]byte, error)
 		return nil, stacktrace.NewError("Key is sealed")
 	}
 
-	block, err := aes.NewCipher(a.Key)
+	var result []byte
+	var err error
+
+	secret.Do(func() {
+		var block cipher.Block
+		block, err = aes.NewCipher(a.Key)
+		if err != nil {
+			return
+		}
+
+		var aesgcm cipher.AEAD
+		aesgcm, err = cipher.NewGCMWithRandomNonce(block)
+		if err != nil {
+			return
+		}
+
+		result = aesgcm.Seal(nil, nil, data, nil)
+	})
+
 	if err != nil {
 		return nil, stacktrace.Propagate(err, "")
 	}
-	aesgcm, _ := cipher.NewGCM(block)
-	nonce := make([]byte, aesgcm.NonceSize())
-	if _, err := io.ReadFull(rand.Reader, nonce); err != nil {
-		return nil, stacktrace.Propagate(err, "")
-	}
 
-	return aesgcm.Seal(nonce, nonce, data, nil), nil
+	return result, nil
 }
 
-// Decrypt decryps a data blob
+// Decrypt decrypts a data blob
 func (a *AES256GCMKey) Decrypt(ctx context.Context, data []byte) ([]byte, error) {
 	if a.isWiped {
 		return nil, stacktrace.NewError("Key is wiped")
@@ -122,35 +149,38 @@ func (a *AES256GCMKey) Decrypt(ctx context.Context, data []byte) ([]byte, error)
 		return nil, stacktrace.NewError("Key is sealed")
 	}
 
-	block, err := aes.NewCipher(a.Key)
+	var result []byte
+	var err error
+
+	secret.Do(func() {
+		var block cipher.Block
+		block, err = aes.NewCipher(a.Key)
+		if err != nil {
+			return
+		}
+
+		var aesgcm cipher.AEAD
+		aesgcm, err = cipher.NewGCMWithRandomNonce(block)
+		if err != nil {
+			return
+		}
+
+		result, err = aesgcm.Open(nil, nil, data, nil)
+	})
+
 	if err != nil {
 		return nil, stacktrace.Propagate(err, "")
 	}
 
-	aesgcm, err := cipher.NewGCM(block)
-	if err != nil {
-		return nil, stacktrace.Propagate(err, "")
-	}
-
-	nonceSize := aesgcm.NonceSize()
-	if len(data) < nonceSize {
-		return nil, stacktrace.NewError("ciphertext too short")
-	}
-
-	// remove the nonce
-	nonce, ciphertext := data[:nonceSize], data[nonceSize:]
-
-	plaintext, err := aesgcm.Open(nil, nonce, ciphertext, nil)
-	if err != nil {
-		return nil, stacktrace.Propagate(err, "")
-	}
-
-	return plaintext, nil
+	return result, nil
 }
 
-// Wipe zeros the key so that plaintext keys are short-lived in RAM, ensuring we do not rely on the GC and maintain full control
+// Attempt to zero plain text material from RAM
+// same as I mentioned in wipeBlock. Best effort. Calling GC, by experience, improves a bit.
+// I will keep it as part of this exercice. There is a runtime penalty, but it's ok for this.
 func (a *AES256GCMKey) Wipe() {
 	clear(a.Key)
+	runtime.GC()
 	a.isWiped = true
 }
 
