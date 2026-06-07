@@ -7,32 +7,6 @@ This repository implements a minimal security management service called KeySafe.
 
 Important to note, all architecture, design and code have beend developed by an Human. No LLM was used in this context.
 
-## Table of contents
-- [Planning](#planning)
-- [Architecture and design choices](#architecture-and-design-choices)
-  - [Project structure](#project-structure)
-- [Security considerations](#security-considerations)
-- [Run the service](run-the-service)
-  - [Smoke test the service](#smoke-test-the-service)
-    - [Expected results](#expected-results)
-- [Run the unit tests](#run-the-unit-tests)
-  - [Coverage and data race detection](#coverage-and-data-race-detection)
-- [Future work / Improvements](#future-work--improvements)
-
-## Planning
-
-| Task Description | Estimated Time |
-| :--- | :--- |
-| Reading instructions & planning | 15 min |
-| Designing architecture & interfaces | 1 Hour |
-| Implementing key creation, storage, and API endpoints | 30 min |
-| Implementing AES-GCM encryption/decryption & audit logging | 1 Hour |
-| Concurrency safety & error handling | 1 Hour |
-| Writing unit tests | 1 Hour |
-| Review and polishing | 1 Hour |
-| Documentation & README | 10 min |
-| **Total Estimated Time** | 6h |
-
 ## Architecture and design choices
 
 Overall architectural division of concerns:
